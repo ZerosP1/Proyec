@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa para Britney</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fff7d9, #ffeb3b, #ffcccb);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #f4d03f;
+            border-radius: 10px;
+            cursor: pointer;
+            animation: float 3s infinite ease-in-out;
+            transform-style: preserve-3d;
+            margin-top: 20px;
+        }
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f1c40f;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
+            border-radius: 10px 10px 0 0;
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out;
+        }
+        .envelope::after {
+            content: 'Para Brit';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            color: #e91e63;
+            font-weight: bold;
+            animation: heartbeat 1.5s infinite;
+        }
+        .envelope.open::before {
+            transform: rotateX(180deg);
+        }
+        .envelope.open::after {
+            display: none;
+        }
+        .content {
+            display: none;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            margin-top: 20px;
+        }
+        .flower {
+            font-size: 10em;
+            color: #ffeb3b; /* Amarillo brillante */
+            text-shadow: 0 0 20px rgba(255, 235, 59, 0.8), 0 0 40px rgba(255, 235, 59, 0.6);
+            animation: float 4s infinite ease-in-out, glow 2s infinite alternate, rotate 5s infinite linear;
+        }
+        .message {
+            font-size: 1.5em;
+            line-height: 1.6;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1.5s ease-in-out;
+        }
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(255, 235, 59, 0.8);
+            color: #333;
+            font-size: 1.2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+        .link {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #e91e63;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: bounce 2s infinite;
+        }
+        .link:hover {
+            background-color: rgba(255, 235, 59, 0.8);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px rgba(255, 235, 59, 0.8), 0 0 40px rgba(255, 235, 59, 0.6); }
+            100% { text-shadow: 0 0 30px rgba(255, 235, 59, 1), 0 0 60px rgba(255, 235, 59, 0.8); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" onclick="openEnvelope()">
+        <div class="content" id="content">
+            <div class="flower">🌼</div>
+            <div class="message">
+                <p>
+                    La rosa no es amarilla y no esta muy bien centrada sorry, Sé que no es mucho y que estas cosas te dan cringe, pero bueno, pregúntame si me importa...
+                </p>
+                <p>
+                    Con amor y cariño para vos. Ya que yo no puedo llevarte las flores, pues dejare que Dewey lo haga por mi:3
+                </p>
+            </div>
+            <a href="https://www.instagram.com/reel/DGEb1quISuk/?igsh=MTB6aHkwZHJheXczZg==" target="_blank" class="link">
+                Ver el enlace especial
+            </a>
+            <div class="footer">
+                <p>© 2025 - Hecho con ❤️ para una amargada.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const content = document.getElementById('content');
+            envelope.classList.add('open');
+            setTimeout(() => {
+                content.style.display = 'block';
+            }, 500); // Espera a que termine la animación del sobre
+        }
+    </script>
+</body>
+</html>
